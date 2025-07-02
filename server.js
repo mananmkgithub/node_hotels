@@ -3,7 +3,7 @@ const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
 const MONGO_URL = process.env.DB_URL
-const passport = require('./auth')
+// const passport = require('./auth')
 const PORT = process.env.PORT || 3000
 
 const bodyParser = require('body-parser');
@@ -18,7 +18,7 @@ const logRequest = (req, res, next) => {
 
 app.use(logRequest);
 app.use(passport.initialize())
-const localAuthMiddleware = passport.authenticate('local', { session: false })
+// const localAuthMiddleware = passport.authenticate('local', { session: false })
 app.get('/', function (req, res) {
     res.send('Welcome to our Hotel');
 })
@@ -28,7 +28,7 @@ const personRoutes = require('./routes/personRoutes');
 const menuItemRoutes = require('./routes/menuItemRoutes');
 
 // Use the routers
-app.use('/person',localAuthMiddleware,personRoutes);
+app.use('/person',personRoutes);
 app.use('/menu',menuItemRoutes);
 
 mongoose.connect(MONGO_URL).then(() => {
