@@ -1,12 +1,13 @@
+require('dotenv').config()
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose');
-const MONGO_URL = "mongodb+srv://Root:Mk2004@mk.unqjvc3.mongodb.net/hotels?retryWrites=true&w=majority&appName=Mk";
+const MONGO_URL = process.env.DB_URL
 const passport = require('./auth')
+const PORT = process.env.PORT || 3000
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // req.body
-const PORT = 3000;
 
 // Middleware Function
 
